@@ -1,21 +1,23 @@
 cask "voiden" do
+  arch arm: "arm64", intel: "x64"
   version "0.10.7"
-  sha256 "87fbabc4122868ed0cc93bd84e18cb2877dab3a2c6442ebe41772d9a17285a57"
+  
+  sha256 arm: "b5823656860fb4f668e9fc617327fd4827267b09d56b053c12a075ab882cb874"
+         intel: "73a254836c0e26d81b6642530a1aec9118829bba1cf97ee0fdb20bd1a9f329b4"
 
-  url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/arm64/Voiden-darwin-arm64-#{version}.zip",
+  url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/#{arch}/Voiden.dmg",
       verified: "voiden-releases.s3.eu-west-1.amazonaws.com/"
   name "Voiden"
   desc "API development tool"
   homepage "https://voiden.md/"
 
   livecheck do
-    url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/arm64/RELEASES.json"
+    url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/#{arch}/RELEASES.json"
     strategy :json do |json|
       json["currentRelease"]
     end
   end
 
-  depends_on arch: :arm64
   depends_on macos: ">= :catalina"
 
   app "Voiden.app"
